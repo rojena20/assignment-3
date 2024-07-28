@@ -5,7 +5,10 @@ import 'models/contact_card_model.dart';
 class ContactCard extends StatelessWidget {
   ContactCardModel contactCardModel;
 
-  ContactCard({super.key, required this.contactCardModel,});
+  ContactCard({
+    super.key,
+    required this.contactCardModel,
+  });
 
   @override
   Widget build(BuildContext context) {

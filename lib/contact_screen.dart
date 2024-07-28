@@ -124,9 +124,11 @@ class _ContactScreenState extends State<ContactScreen> {
                           ),
                         ),
                         onPressed: () {
-                          setState(() {if (cards.isNotEmpty) {
-                            cards.last.contactCardModel.isVisible = false;
-                          }});
+                          setState(() {
+                            if (cards.isNotEmpty) {
+                              cards.last.contactCardModel.isVisible = false;
+                            }
+                          });
                         },
                         child: Text(
                           "Delete",

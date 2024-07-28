@@ -8,7 +8,10 @@ class Textfield extends StatelessWidget {
   TextEditingController controller;
 
   Textfield(
-      {super.key, required this.textfiledModel, required this.keyboardType, required this.controller});
+      {super.key,
+      required this.textfiledModel,
+      required this.keyboardType,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
