@@ -18,7 +18,15 @@ class _ContactScreenState extends State<ContactScreen> {
   String phone = "";
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
-  List<ContactCard> cards = [];
+  List<ContactCardModel> cards = [];
+
+  void deletion() {
+    if (cards.isNotEmpty) {
+      setState(() {
+        cards[cards.length - 1].isVisible = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,15 +92,10 @@ class _ContactScreenState extends State<ContactScreen> {
                         onPressed: () {
                           name = _nameController.text;
                           phone = _phoneController.text;
-                          cards.add(
-                            ContactCard(
-                              contactCardModel: ContactCardModel(
-                                contactName: name,
-                                contactPhone: phone,
-                                isVisible: true,
-                              ),
-                            ),
-                          );
+                          cards.add(ContactCardModel(
+                              contactName: name,
+                              contactPhone: phone,
+                              isVisible: true));
                           setState(() {});
                           _nameController.clear();
                           _phoneController.clear();
@@ -123,13 +126,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             ),
                           ),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            if (cards.isNotEmpty) {
-                              cards.last.contactCardModel.isVisible = false;
-                            }
-                          });
-                        },
+                        onPressed: deletion,
                         child: Text(
                           "Delete",
                           style: TextStyle(
@@ -143,10 +140,17 @@ class _ContactScreenState extends State<ContactScreen> {
                   ],
                 ),
               ),
-              Column(
-                children: [
-                  for (var card in cards) card,
-                ],
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (var contactCardModel in cards)
+                        ContactCard(
+                          contactCardModel: contactCardModel,
+                        ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
